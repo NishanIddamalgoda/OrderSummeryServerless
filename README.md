@@ -18,6 +18,7 @@ Please find the instructions
 https://drive.google.com/file/d/1eE2Vr_C-ECpXaY8vmjWIbN_ZgqKpOxEd/view?usp=sharing
 
 Special note: there is a possibility that the S3 bucket name in the below line should be changed accordingly since it should be globally unique.
+https://github.com/NishanIddamalgoda/OrderSummeryServerless/blob/ddcaf591ec1ffcdca997e82b8fb0de1aaf2b18e5/order-summery/serverless.yml#L25
 
 # Test & Run
 Please find the instructions
