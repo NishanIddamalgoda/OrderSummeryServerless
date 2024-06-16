@@ -1,0 +1,36 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: testingtest
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: order-summery-app
+service: order-summery
+
+resources:
+  - ${file(resources/sqs-queue.yml)}
+  - ${file(resources/dynamodb.yml)}
+  - ${file(resources/iam-roles.yml)}
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+
+functions:
+  createOrderSummery:
+    handler: src/orderEventsHandler.createOrderSummery
+    name: create-order-summery
+    reservedConcurrency: 3
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - OrderUpdatesQueue
+              - Arn
+          batchSize: 1
+      - s3: 
+          bucket: order-summery-101
+          event: s3:ObjectCreated:*
+          rules:
+            - suffix: .json
+    role:
+      Fn::GetAtt:
+        - IamRoleOrderSummeryInvoker
+        - Arn

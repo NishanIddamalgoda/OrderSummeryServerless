@@ -1,0 +1,10 @@
+Resources:
+  OrderUpdatesQueue:
+    Type: 'AWS::SQS::Queue'
+    Properties:
+      QueueName: OderQueue.fifo
+      ContentBasedDeduplication: true
+      FifoQueue: true
+      DelaySeconds: 0
+      ReceiveMessageWaitTimeSeconds: 0
+      VisibilityTimeout: 120

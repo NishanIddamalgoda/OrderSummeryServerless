@@ -1,0 +1,48 @@
+Resources:
+  IamRoleOrderSummeryInvoker:
+      Type: 'AWS::IAM::Role'
+      Properties:
+        RoleName: OrderSummeryInvokerRole
+        Description: 'Role to consumer SQS message events'
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service:
+                  - lambda.amazonaws.com
+              Action:
+                - 'sts:AssumeRole'
+        ManagedPolicyArns:
+          - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole 
+        Policies:
+          - PolicyName: OrderSummeryInvokerPolicy
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                - Effect: Allow
+                  Action:
+                    - 'sqs:ReceiveMessage'
+                    - 'sqs:GetQueueUrl'
+                    - 'sqs:ListQueues'
+                    - 'sqs:DeleteMessage'
+                    - 'sqs:GetQueueAttributes'
+                  Resource:
+                    Fn::GetAtt:
+                      - OrderUpdatesQueue
+                      - Arn
+                - Effect: Allow
+                  Action:
+                    - 's3:ListBucket'
+                    - 's3:GetObject'
+                    - 's3:PutObject'
+                    - 's3:DeleteObject'
+                  Resource: "*"
+                - Effect: Allow
+                  Action:
+                    - 'dynamodb:PutItem'
+                    - 'dynamodb:DescribeTable'
+                    - 'dynamodb:GetItem'
+                    - 'dynamodb:Scan'
+                    - 'dynamodb:UpdateItem'
+                  Resource: "*"

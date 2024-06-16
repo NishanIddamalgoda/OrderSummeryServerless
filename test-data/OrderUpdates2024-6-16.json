@@ -1,0 +1,30 @@
+[
+  {
+    "orderId": "022",
+    "orderDate": "2024-06-16",
+    "itemCode": "1120C",
+    "qty": "10",
+    "lineTotal": "1000"
+  },
+  {
+    "orderId": "022",
+    "orderDate": "2024-06-16",
+    "itemCode": "1122B",
+    "qty": "30",
+    "lineTotal": "70000"
+  },
+  {
+    "orderId": "022",
+    "orderDate": "2024-06-16",
+    "itemCode": "3144K",
+    "qty": "100",
+    "lineTotal": "12000"
+  },
+  {
+    "orderId": "022",
+    "orderDate": "2024-06-16",
+    "itemCode": "3335J",
+    "qty": "500",
+    "lineTotal": "300000"
+  }
+]
