@@ -6,6 +6,8 @@ The order line items data flow from two sources:
   2. Through Json files uploaded to S3 buck from manual processing.
 
 The main function will capture events and data from the above two sources, analyze them, and save them in the Dynamodb table.
+The main assumption is that every single event from both sources contains order line information about a single order, otherwise data will be validated and failed as invalid data.
+
 
 High-Level Architecture
 ![OrderSummeryDesign](https://github.com/NishanIddamalgoda/OrderSummeryServerless/assets/33596793/9edb04f9-5421-4490-82b1-42773311b745)
