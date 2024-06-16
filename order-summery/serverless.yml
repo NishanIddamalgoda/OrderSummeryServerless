@@ -1,7 +1,3 @@
-# "org" ensures this Service is used with the correct Serverless Framework Access Key.
-org: testingtest
-# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
-app: order-summery-app
 service: order-summery
 
 resources:
@@ -26,7 +22,7 @@ functions:
               - Arn
           batchSize: 1
       - s3: 
-          bucket: order-summery-101
+          bucket: order-summery-101-test
           event: s3:ObjectCreated:*
           rules:
             - suffix: .json
